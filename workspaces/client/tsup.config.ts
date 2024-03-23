@@ -35,6 +35,7 @@ export default defineConfig(async (): Promise<Options[]> => {
           global: 'globalThis',
         };
         options.publicPath = '/';
+        options.treeShaking=  true;
       },
       esbuildPlugins: [
         polyfillNode({
@@ -61,7 +62,6 @@ export default defineConfig(async (): Promise<Options[]> => {
       sourcemap: 'inline',
       splitting: true,
       target: ['chrome123'],
-      treeshake: false,
     },
   ];
 });
