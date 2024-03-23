@@ -5,20 +5,20 @@ async function wait(milliseconds: number) {
 }
 
 export async function preloadImages() {
-  if (process.env['PATH_LIST'] == null) {
+  const pathList = process.env['PATH_LIST'];
+  if (pathList == null) {
     return;
   }
 
-  const imagePathList: string[] = process.env['PATH_LIST'].split(',').filter((imagePath) => {
+  const imagePathList: string[] = pathList.split(',').filter((imagePath) => {
     const extension = path.parse(imagePath).ext.toLowerCase();
     return ['.bmp', '.jpg', '.jpeg', '.gif', '.png', '.webp', '.avif'].includes(extension);
   });
 
   const prefetch = Promise.all(
     imagePathList.map((imagePath) => {
+      const link = document.createElement('link');
       return new Promise((resolve) => {
-        const link = document.createElement('link');
-
         Object.assign(link, {
           as: 'image',
           crossOrigin: 'anonymous',
