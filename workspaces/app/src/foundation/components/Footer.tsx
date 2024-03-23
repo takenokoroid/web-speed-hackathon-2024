@@ -1,13 +1,8 @@
 import { useSetAtom } from 'jotai';
-import React, { useId } from 'react';
+import React, { useEffect, useId, useState } from 'react';
 import styled from 'styled-components';
 
 import { DialogContentAtom } from '../atoms/DialogContentAtom';
-import { COMPANY } from '../constants/Company';
-import { CONTACT } from '../constants/Contact';
-import { OVERVIEW } from '../constants/Overview';
-import { QUESTION } from '../constants/Question';
-import { TERM } from '../constants/Term';
 import { Color, Space, Typography } from '../styles/variables';
 
 import { Box } from './Box';
@@ -24,8 +19,38 @@ const _Content = styled.section`
   white-space: pre-line;
 `;
 
+
 export const Footer: React.FC = () => {
   const [isClient, setIsClient] = React.useState(false);
+
+  // const [text, setText] = useState('');
+
+  // useEffect(() => {
+  //   // useEffect内で非同期関数を定義します。
+  //   const fetchText = async () => {
+  //     try {
+  //       const response = await fetch('/assets/constants/Company.txt');
+  //       const txt = await response.text(); // レスポンスをテキストとして取得
+  //       setText(txt); // 状態を更新
+  //     } catch (error) {
+  //       console.error('Error fetching text:', error);
+  //       setText('Error loading the text.');
+  //     }
+  //   };
+
+  //   fetchText(); // 定義した非同期関数を呼び出します。
+  // }, []);
+
+  const fetchTextData = async (path:string) => {
+    try {
+      const response = await fetch(path);
+      const txt = await response.text();
+      return txt; // 成功した場合、テキストデータを返します。
+    } catch (error) {
+      console.error('Error fetching text:', error);
+      return 'Error loading the text.'; // エラーが発生した場合、エラーメッセージを返します。
+    }
+  };
 
   React.useEffect(() => {
     setIsClient(true);
@@ -39,7 +64,8 @@ export const Footer: React.FC = () => {
 
   const updateDialogContent = useSetAtom(DialogContentAtom);
 
-  const handleRequestToTermDialogOpen = () => {
+  const handleRequestToTermDialogOpen = async () => {
+    const text = await fetchTextData('/assets/constants/Term.txt');
     updateDialogContent(
       <_Content aria-labelledby={termDialogA11yId} role="dialog">
         <Text as="h2" color={Color.MONO_100} id={termDialogA11yId} typography={Typography.NORMAL16}>
@@ -47,13 +73,14 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {TERM}
+          {text ? text : 'Loading...'}
         </Text>
       </_Content>,
     );
   };
 
-  const handleRequestToContactDialogOpen = () => {
+  const handleRequestToContactDialogOpen = async () => {
+    const text = await fetchTextData('/assets/constants/Contact.txt');
     updateDialogContent(
       <_Content aria-labelledby={contactDialogA11yId} role="dialog">
         <Text as="h2" color={Color.MONO_100} id={contactDialogA11yId} typography={Typography.NORMAL16}>
@@ -61,13 +88,14 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {CONTACT}
+          {text ? text : 'Loading...'}
         </Text>
       </_Content>,
     );
   };
 
-  const handleRequestToQuestionDialogOpen = () => {
+  const handleRequestToQuestionDialogOpen = async () => {
+    const text = await fetchTextData('/assets/constants/Question.txt');
     updateDialogContent(
       <_Content aria-labelledby={questionDialogA11yId} role="dialog">
         <Text as="h2" color={Color.MONO_100} id={questionDialogA11yId} typography={Typography.NORMAL16}>
@@ -75,13 +103,14 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {QUESTION}
+          {text ? text : 'Loading...'}
         </Text>
       </_Content>,
     );
   };
 
-  const handleRequestToCompanyDialogOpen = () => {
+  const handleRequestToCompanyDialogOpen = async () => {
+    const text = await fetchTextData('/assets/constants/Company.txt');
     updateDialogContent(
       <_Content aria-labelledby={companyDialogA11yId} role="dialog">
         <Text as="h2" color={Color.MONO_100} id={companyDialogA11yId} typography={Typography.NORMAL16}>
@@ -89,13 +118,14 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {COMPANY}
+          {text ? text : 'Loading...'}
         </Text>
       </_Content>,
     );
   };
 
-  const handleRequestToOverviewDialogOpen = () => {
+  const handleRequestToOverviewDialogOpen = async () => {
+    const text = await fetchTextData('/assets/constants/Overview.txt');
     updateDialogContent(
       <_Content aria-labelledby={overviewDialogA11yId} role="dialog">
         <Text as="h2" color={Color.MONO_100} id={overviewDialogA11yId} typography={Typography.NORMAL16}>
@@ -103,7 +133,7 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {OVERVIEW}
+          {text ? text : 'Loading...'}
         </Text>
       </_Content>,
     );
