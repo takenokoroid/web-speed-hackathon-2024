@@ -1,18 +1,30 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-import { SvgIcon } from './features/icons/components/SvgIcon';
-import { Link } from './foundation/components/Link';
-import { Text } from './foundation/components/Text';
-import { ActionLayout } from './foundation/layouts/ActionLayout';
-import { CommonLayout } from './foundation/layouts/CommonLayout';
 import { Color, Space, Typography } from './foundation/styles/variables';
-import { AuthorDetailPage } from './pages/AuthorDetailPage';
-import { BookDetailPage } from './pages/BookDetailPage';
-import { EpisodeDetailPage } from './pages/EpisodeDetailPage';
-import { SearchPage } from './pages/SearchPage';
-import { TopPage } from './pages/TopPage';
+const SvgIcon = lazy(() =>
+  import('./features/icons/components/SvgIcon').then((module) => ({ default: module.SvgIcon })),
+);
+const Link = lazy(() => import('./foundation/components/Link').then((module) => ({ default: module.Link })));
+const Text = lazy(() => import('./foundation/components/Text').then((module) => ({ default: module.Text })));
+const ActionLayout = lazy(() =>
+  import('./foundation/layouts/ActionLayout').then((module) => ({ default: module.ActionLayout })),
+);
+const CommonLayout = lazy(() =>
+  import('./foundation/layouts/CommonLayout').then((module) => ({ default: module.CommonLayout })),
+);
+const AuthorDetailPage = lazy(() =>
+  import('./pages/AuthorDetailPage').then((module) => ({ default: module.AuthorDetailPage })),
+);
+const BookDetailPage = lazy(() =>
+  import('./pages/BookDetailPage').then((module) => ({ default: module.BookDetailPage })),
+);
+const EpisodeDetailPage = lazy(() =>
+  import('./pages/EpisodeDetailPage').then((module) => ({ default: module.EpisodeDetailPage })),
+);
+const SearchPage = lazy(() => import('./pages/SearchPage').then((module) => ({ default: module.SearchPage })));
+const TopPage = lazy(() => import('./pages/TopPage').then((module) => ({ default: module.TopPage })));
 
 const _BackToTopButton = styled(Link)`
   display: flex;
