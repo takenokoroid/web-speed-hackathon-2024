@@ -20,7 +20,7 @@ export const useLogin = () => {
     },
     onError: () => {
       toast({
-        duration: 1000,
+        duration: 5000,
         isClosable: true,
         status: 'error',
         title: 'ログインに失敗しました',
@@ -33,7 +33,7 @@ export const useLogin = () => {
     },
     onSuccess: () => {
       toast({
-        duration: 1000,
+        duration: 5000,
         isClosable: true,
         status: 'success',
         title: 'ログインしました',
