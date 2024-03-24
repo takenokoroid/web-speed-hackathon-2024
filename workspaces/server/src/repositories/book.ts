@@ -103,10 +103,10 @@ class BookRepository implements BookRepositoryInterface {
             return eq(book.authorId, options.query.authorId);
           }
           if (options.query.authorName != null) {
-            return like(author.name, `%${options.query.authorName}%`);
+            return like(author.name, `${options.query.authorName}%`);
           }
           if (options.query.name != null) {
-            return like(book.name, `%${options.query.name}%`);
+            return like(book.name, `${options.query.name}%`);
           }
           return;
         },
