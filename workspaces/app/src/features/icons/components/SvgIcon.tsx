@@ -4,12 +4,13 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import CloseIcon from '@mui/icons-material/Close';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 type Props = {
   color: string;
   height: number;
   // 使用するアイコンのタイプを拡張
-  type: 'Search' | 'FavoriteBorder' | 'Favorite' | 'Close' | 'NavigateNext';
+  type: 'Search' | 'FavoriteBorder' | 'Favorite' | 'Close' | 'NavigateNext' | "ArrowBack";
   width: number;
 };
 
@@ -31,6 +32,9 @@ export const SvgIcon: React.FC<Props> = ({ color, height, type, width }) => {
       break;
     case 'NavigateNext':
       Icon = NavigateNextIcon;
+      break
+    case 'ArrowBack':
+      Icon = ArrowBackIcon;
       break;
     default:
       throw new Error(`Unsupported icon type: ${type}`);
