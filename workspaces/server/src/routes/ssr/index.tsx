@@ -55,8 +55,8 @@ async function createHTML({
     .replaceAll('<div id="root"></div>', `<div id="root">${body}</div>`)
     .replaceAll('<style id="tag"></style>', styleTags)
     .replaceAll(
-      '<script id="inject-data" type="application/json"></script>',
-      `<script id="inject-data" type="application/json">
+      '<script id="inject-data" type="application/json" defer></script>',
+      `<script id="inject-data" type="application/json" defer>
         ${jsesc(injectData, {
           isScriptContext: true,
           json: true,
