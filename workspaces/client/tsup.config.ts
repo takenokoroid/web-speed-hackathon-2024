@@ -39,13 +39,8 @@ export default defineConfig(async (): Promise<Options[]> => {
       },
       esbuildPlugins: [
         polyfillNode({
-          globals: {
-            process: false,
-          },
           polyfills: {
             events: true,
-            fs: true,
-            path: true,
           },
         }),
       ],
@@ -54,12 +49,12 @@ export default defineConfig(async (): Promise<Options[]> => {
         '.json?file': 'file',
         '.wasm': 'binary',
       },
-      metafile: true,
+      metafile: false,
       minify: true,
       outDir: OUTPUT_DIR,
       platform: 'browser',
       shims: false,
-      sourcemap: true,
+      sourcemap: false,
       splitting: true,
       target: ['esnext'],
     },
