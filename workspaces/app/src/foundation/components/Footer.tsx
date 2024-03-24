@@ -23,24 +23,6 @@ const _Content = styled.section`
 export const Footer: React.FC = () => {
   const [isClient, setIsClient] = React.useState(false);
 
-  // const [text, setText] = useState('');
-
-  // useEffect(() => {
-  //   // useEffect内で非同期関数を定義します。
-  //   const fetchText = async () => {
-  //     try {
-  //       const response = await fetch('/assets/constants/Company.txt');
-  //       const txt = await response.text(); // レスポンスをテキストとして取得
-  //       setText(txt); // 状態を更新
-  //     } catch (error) {
-  //       console.error('Error fetching text:', error);
-  //       setText('Error loading the text.');
-  //     }
-  //   };
-
-  //   fetchText(); // 定義した非同期関数を呼び出します。
-  // }, []);
-
   const fetchTextData = async (path:string) => {
     try {
       const response = await fetch(path);

@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import { Color, Space, Typography } from './foundation/styles/variables';
-// import { SvgIcon } from './features/icons/components/SvgIcon';
 
 const SvgIcon = lazy(() =>
   import('./features/icons/components/SvgIcon').then((module) => ({ default: module.SvgIcon })),
